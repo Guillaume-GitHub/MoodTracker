@@ -2,6 +2,9 @@ package com.bague.guillaume.moodtracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +32,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             R.drawable.smiley_sad
     };
 
+    private int[] mColors ={
+            R.color.banana_yellow,
+            R.color.light_sage,
+            R.color.cornflower_blue_65,
+            R.color.warm_grey,
+            R.color.faded_red,
+
+
+    };
+
     public RecyclerViewAdapter(Context context) {
         mContext = context;
     }
@@ -36,11 +49,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImageView;
-        private View mContainer;
+        private LinearLayout mLinearLayout;
         public MyViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.activity_recyclerview_ImageView);
-            mContainer = itemView;
+            mLinearLayout = itemView.findViewById(R.id.activity_recyclerview_LinearLayout);;
         }
     }
 
@@ -55,6 +68,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.mImageView.setImageResource(mImages[i]);
+        myViewHolder.mLinearLayout.setBackgroundColor(myViewHolder.mLinearLayout.getContext().getResources().getColor(mColors[i]));
+        System.out.println("IMAGE : " + i );
 
     }
 
