@@ -38,8 +38,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             R.color.cornflower_blue_65,
             R.color.warm_grey,
             R.color.faded_red,
-
-
     };
 
     public RecyclerViewAdapter(Context context) {
