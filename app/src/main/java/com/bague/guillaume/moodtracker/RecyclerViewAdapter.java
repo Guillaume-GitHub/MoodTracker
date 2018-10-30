@@ -1,11 +1,6 @@
 package com.bague.guillaume.moodtracker;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -23,6 +18,7 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext;
+    private int mCurrentImage;
 
     private int[] mImages = {
             R.drawable.smiley_super_happy,
@@ -51,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.activity_recyclerview_ImageView);
-            mLinearLayout = itemView.findViewById(R.id.activity_recyclerview_LinearLayout);;
+            mLinearLayout = itemView.findViewById(R.id.activity_recyclerview_LinearLayout);
         }
     }
 
@@ -67,13 +63,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         myViewHolder.mImageView.setImageResource(mImages[i]);
         myViewHolder.mLinearLayout.setBackgroundColor(myViewHolder.mLinearLayout.getContext().getResources().getColor(mColors[i]));
-        System.out.println("IMAGE : " + i );
+    }
 
+    @Override
+    public void onViewAttachedToWindow(@NonNull MyViewHolder holder) {
+        mCurrentImage = holder.getLayoutPosition();
+        System.out.println("View N° "+holder.getLayoutPosition());
     }
 
     @Override
     public int getItemCount() {
         return mImages.length;
+    }
+
+    public String getCurrentImage() {
+        String str = "" + mCurrentImage;
+        return  str;
     }
 }
 
