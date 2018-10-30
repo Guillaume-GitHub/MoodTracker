@@ -3,7 +3,6 @@ package com.bague.guillaume.moodtracker;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,19 +18,12 @@ private TextView day2;
 private TextView day1;
 private int i =0;
 private int mDisplayWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-private int mDisplayHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours", "Il y a 4 jours", "Il y a 3 jours", "Avant Hier", "Hier"};
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-
-        System.out.println("open");
-        System.out.println(mDisplayHeight);
-        System.out.println(mDisplayHeight /7);
 
         day7 = findViewById(R.id.textView7);
         day6 = findViewById(R.id.textView6);
@@ -50,16 +42,13 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
                 MainActivity.PREF_MOOD_DAY2,
                 MainActivity.PREF_MOOD_DAY1};
 
-
         TextView[] textViews = {day7, day6, day5, day4, day3, day2, day1};
 
-
-        while (i < textViews.length) {
+        while (i < prefsArray.length) {
 
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textViews[i].getLayoutParams();
             String mPref = MainActivity.getPrefs(prefsArray[i], this);
-
-            System.out.println("pref = " + mPref + " tour " + i);
+            diplayIcon(textViews[i],i);
 
             switch (mPref) {
 
@@ -93,7 +82,6 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
 
                 case "4":
                     params.width = (int) Math.round(mDisplayWidth * 0.2);
-                   // params.height =(mDisplayHeight);
                     textViews[i].setLayoutParams(params);
                     textViews[i].setText(text[i]);
                     textViews[i].setBackgroundColor(textViews[i].getContext().getResources().getColor(R.color.faded_red));
@@ -106,6 +94,25 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
                     break;
             }
             i++;
+        }
+    }
+
+    public void diplayIcon(TextView txtView, int i){
+
+        String[] commentPref = {
+                MainActivity.PREF_COMMENT_7,
+                MainActivity.PREF_COMMENT_6,
+                MainActivity.PREF_COMMENT_5,
+                MainActivity.PREF_COMMENT_4,
+                MainActivity.PREF_COMMENT_3,
+                MainActivity.PREF_COMMENT_2,
+                MainActivity.PREF_COMMENT_1};
+
+        String str = MainActivity.getPrefs(commentPref[i],this);
+        if(str != ""){
+            txtView.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_comment_black_48px,0);
+        }else{
+
         }
     }
 }

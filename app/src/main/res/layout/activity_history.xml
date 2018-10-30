@@ -14,8 +14,9 @@
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cornflower_blue_65"
         android:layout_weight="1"
+        android:background="@color/cornflower_blue_65"
+        android:paddingRight="25dp"
         android:textStyle="bold" />
 
     <TextView
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/light_sage"/>
 
     <TextView
@@ -32,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/faded_red"/>
     <TextView
         android:id="@+id/textView4"
@@ -39,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/banana_yellow"/>
     <TextView
         android:id="@+id/textView3"
@@ -46,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/warm_grey"/>
     <TextView
         android:id="@+id/textView2"
@@ -53,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/colorAccent"/>
 
     <TextView
@@ -61,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textStyle="bold"
+        android:paddingRight="25dp"
         android:background="@color/cornflower_blue_65"/>
 
 </LinearLayout>
