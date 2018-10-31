@@ -3,6 +3,7 @@ package com.bague.guillaume.moodtracker;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,9 +98,9 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
         }
     }
 
-    public void displayIcon(TextView txtView, int i){
+    public void displayIcon(TextView txtView, final int i){
 
-        String[] commentPref = {
+        final String[] commentPref = {
                 MainActivity.PREF_COMMENT_7,
                 MainActivity.PREF_COMMENT_6,
                 MainActivity.PREF_COMMENT_5,
@@ -109,10 +110,15 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
                 MainActivity.PREF_COMMENT_1};
 
         String str = MainActivity.getPrefs(commentPref[i],this);
-        if(str != ""){
-            txtView.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.ic_comment_black_48px,0);
-        }else{
+        if(!str.isEmpty()) {
+            txtView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_comment_black_48px, 0);
 
+            txtView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), MainActivity.getPrefs(commentPref[i], getApplicationContext()), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }
