@@ -97,14 +97,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void commentAlertDialog() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-         final EditText editText = (EditText)findViewById(R.id.commentEditText);
-         builder.setView(R.layout.comment_popup)
-                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.comment_popup,null);
+        final EditText mEditText = (EditText) mView.findViewById(R.id.commentEditText);
+         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                       String str = editText.getText().toString();
+                       String str = mEditText.getText().toString();
+                        System.out.println(str);
                     }
                 })
                 .setNegativeButton("Back", new DialogInterface.OnClickListener() {
@@ -112,8 +113,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 })
-                .create()
-                .show();
+                 .setView(mView)
+                 .create()
+                 .show();
     }
 
     public static void setMoodPrefs (String key, String value, Context context) {
