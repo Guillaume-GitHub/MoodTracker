@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerViewAdapter mAdapter;
     private Button mHistoryBtn;
     private Button mCommentBtn;
+    private String mComment;
 
 
     public static final String PREF_MOOD_DAY1 = "PREF_MOOD_DAY1" ;
@@ -87,7 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this,HistoryActivity.class);
             startActivity(intent);
             setMoodPrefs(PREF_MOOD_DAY1,mAdapter.getCurrentImage(),this);
+            setCommentPrefs(PREF_COMMENT_1,mComment,this);
+            mComment = "";
             System.out.println(getPrefs(PREF_MOOD_DAY1,this));
+            System.out.println(getPrefs(PREF_COMMENT_1,this));
 
         } else if((int) v.getTag() == 2) {
             Toast.makeText(this, "Bouton comment", Toast.LENGTH_SHORT).show();
@@ -103,14 +107,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if (!mEditText.getText().toString().isEmpty()) {
+                            mComment = mEditText.getText().toString();
+                            System.out.println(mComment);
 
-                       String str = mEditText.getText().toString();
-                        System.out.println(str);
+                        }else{
+                            System.out.println("Vide");
+                        }
                     }
                 })
                 .setNegativeButton("Back", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        System.out.println("annul");
                     }
                 })
                  .setView(mView)

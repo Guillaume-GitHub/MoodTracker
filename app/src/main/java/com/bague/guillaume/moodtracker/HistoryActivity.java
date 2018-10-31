@@ -48,7 +48,7 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
 
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textViews[i].getLayoutParams();
             String mPref = MainActivity.getPrefs(prefsArray[i], this);
-            diplayIcon(textViews[i],i);
+            displayIcon(textViews[i],i);
 
             switch (mPref) {
 
@@ -97,7 +97,7 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
         }
     }
 
-    public void diplayIcon(TextView txtView, int i){
+    public void displayIcon(TextView txtView, int i){
 
         String[] commentPref = {
                 MainActivity.PREF_COMMENT_7,
