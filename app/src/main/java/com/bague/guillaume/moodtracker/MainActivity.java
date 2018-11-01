@@ -1,5 +1,7 @@
 package com.bague.guillaume.moodtracker;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,18 +14,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
-import android.text.Editable;
-import android.text.Layout;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Toast;
+import java.util.Calendar;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,8 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerViewAdapter mAdapter;
     private Button mHistoryBtn;
     private Button mCommentBtn;
-    private String mComment;
-
+    public String mComment;
 
     public static final String PREF_MOOD_DAY1 = "PREF_MOOD_DAY1" ;
     public static final String PREF_MOOD_DAY2 = "PREF_MOOD_DAY2" ;
@@ -79,6 +74,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mRecycler.setLayoutManager(layoutManager);
 
         mRecycler.setAdapter(mAdapter);
+
+        startAlarmToSave(14,6);
+        System.out.println("create");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("start");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("Restart");
     }
 
     @Override
@@ -87,11 +97,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //Toast.makeText(this,mAdapter.getCurrentImage(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(MainActivity.this,HistoryActivity.class);
             startActivity(intent);
-            setMoodPrefs(PREF_MOOD_DAY1,mAdapter.getCurrentImage(),this);
-            setCommentPrefs(PREF_COMMENT_1,mComment,this);
-            mComment = "";
-            System.out.println(getPrefs(PREF_MOOD_DAY1,this));
-            System.out.println(getPrefs(PREF_COMMENT_1,this));
+           // setMoodPrefs(PREF_MOOD_DAY1,mAdapter.getCurrentImage(),this);
+           // setCommentPrefs(PREF_COMMENT_1,mComment,this);
+
+           // System.out.println(getPrefs(PREF_MOOD_DAY1,this));
+           // System.out.println(getPrefs(PREF_COMMENT_1,this));
 
         } else if((int) v.getTag() == 2) {
             Toast.makeText(this, "Bouton comment", Toast.LENGTH_SHORT).show();
@@ -156,5 +166,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static String getPrefs (String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, "");
+    }
+
+    private void startAlarmToSave(int hours, int minuts){
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.get(Calendar.ZONE_OFFSET);
+        mCalendar.get(Calendar.DST_OFFSET);
+        mCalendar.set(Calendar.HOUR_OF_DAY, hours);
+        mCalendar.set(Calendar.MINUTE, minuts);
+
+        AlarmManager mAlarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent mIntent;
+        PendingIntent mPendindIntent;
+        mIntent = new Intent(MainActivity.this,AlarmReceiver.class);
+        mPendindIntent = PendingIntent.getBroadcast(getApplicationContext(),0,mIntent,0);
+
+        mAlarmManager.setRepeating(AlarmManager.RTC_WAKEUP,mCalendar.getTimeInMillis(),mAlarmManager.INTERVAL_DAY, mPendindIntent);
+
     }
 }

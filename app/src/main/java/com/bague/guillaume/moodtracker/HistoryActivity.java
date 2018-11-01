@@ -100,16 +100,9 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
 
     public void displayIcon(TextView txtView, final int i){
 
-        final String[] commentPref = {
-                MainActivity.PREF_COMMENT_7,
-                MainActivity.PREF_COMMENT_6,
-                MainActivity.PREF_COMMENT_5,
-                MainActivity.PREF_COMMENT_4,
-                MainActivity.PREF_COMMENT_3,
-                MainActivity.PREF_COMMENT_2,
-                MainActivity.PREF_COMMENT_1};
-
+        final String[] commentPref = {MainActivity.PREF_COMMENT_7, MainActivity.PREF_COMMENT_6, MainActivity.PREF_COMMENT_5, MainActivity.PREF_COMMENT_4, MainActivity.PREF_COMMENT_3, MainActivity.PREF_COMMENT_2, MainActivity.PREF_COMMENT_1};
         String str = MainActivity.getPrefs(commentPref[i],this);
+
         if(!str.isEmpty()) {
             txtView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_comment_black_48px, 0);
 

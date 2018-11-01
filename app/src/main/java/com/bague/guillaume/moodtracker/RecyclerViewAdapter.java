@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 /**
- * Create by Guillaume BAGUE  on 26/10/2018
+ * Create by Guillaume on 26/10/2018
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
