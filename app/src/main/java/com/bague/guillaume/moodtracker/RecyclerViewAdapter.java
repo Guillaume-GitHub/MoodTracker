@@ -1,6 +1,7 @@
 package com.bague.guillaume.moodtracker;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,7 +19,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private Context mContext;
     private int mCurrentImage;
-
+    private MediaController mMedia = new MediaController();
     private int[] mImages = {
             R.drawable.smiley_super_happy,
             R.drawable.smiley_happy,
@@ -70,6 +71,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         PreferenceController.setPrefs(PreferenceController.PREF_POSITION_RECYCLERVIEW,Integer.toString(holder.getLayoutPosition()),mContext);
         System.out.println("View N° "+holder.getLayoutPosition());
         System.out.println(PreferenceController.getPrefs(PreferenceController.PREF_POSITION_RECYCLERVIEW,mContext));
+        mMedia.playSong(mContext,holder.getLayoutPosition());
+
     }
 
     @Override

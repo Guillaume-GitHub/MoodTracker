@@ -19,16 +19,6 @@
             android:layout_marginBottom="25dp"
             android:background="@drawable/ic_note_add_black" />
 
-    <Button
-        android:id="@+id/testBtn"
-        android:layout_width="65dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="172dp"
-        android:layout_marginBottom="96dp" />
-
-
         <Button
             android:id="@+id/mainActivity_History_Btn"
             android:layout_width="65dp"
