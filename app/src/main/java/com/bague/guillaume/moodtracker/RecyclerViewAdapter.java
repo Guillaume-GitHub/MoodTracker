@@ -3,7 +3,6 @@ package com.bague.guillaume.moodtracker;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         mContext = context;
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImageView;
@@ -67,8 +67,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onViewAttachedToWindow(@NonNull MyViewHolder holder) {
-        mCurrentImage = holder.getLayoutPosition();
+        PreferenceController.setPrefs(PreferenceController.PREF_POSITION_RECYCLERVIEW,Integer.toString(holder.getLayoutPosition()),mContext);
         System.out.println("View N° "+holder.getLayoutPosition());
+        System.out.println(PreferenceController.getPrefs(PreferenceController.PREF_POSITION_RECYCLERVIEW,mContext));
     }
 
     @Override
@@ -76,9 +77,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mImages.length;
     }
 
-    public String getCurrentImage() {
-        String str = "" + mCurrentImage;
-        return  str;
-    }
 }
 
