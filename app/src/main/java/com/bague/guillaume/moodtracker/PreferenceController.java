@@ -28,7 +28,12 @@ public class PreferenceController {
     public static final String PREF_POSITION_RECYCLERVIEW = "-1";
     public static final String PREF_CURRENT_COMMENT ="PREF_CURRENT_COMMENT";
 
-
+    /**
+     * Write in preferences
+     * @param key are name of preference key
+     * @param value are value of preference key
+     * @param context context
+     */
     public static void setPrefs (String key, String value, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -36,13 +41,22 @@ public class PreferenceController {
         editor.apply();
     }
 
+    /**
+     * Return value of Key
+     * @param key are name of preference key
+     * @param context context
+     * @return
+     */
     public static String getPrefs (String key, Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString(key, "");
     }
 
+    /**
+     * Save all preferences
+     * @param context context
+     */
     public static void dailyTasks(Context context){
-        System.out.println("DailyTasks");
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();
@@ -65,25 +79,6 @@ public class PreferenceController {
         editor.putString(PREF_POSITION_RECYCLERVIEW,preferences.getString("-1","0"));
 
         editor.apply();
-
-        System.out.println("PREF_COMMENT_7 = " + preferences.getString(PREF_COMMENT_7,"") );
-        System.out.println("PREF_COMMENT_6 = " + preferences.getString(PREF_COMMENT_6 ,"") );
-        System.out.println("PREF_COMMENT_5 = " + preferences.getString(PREF_COMMENT_5,"") );
-        System.out.println("PREF_COMMENT_4 = " + preferences.getString(PREF_COMMENT_4,"") );
-        System.out.println("PREF_COMMENT_3 = " + preferences.getString(PREF_COMMENT_3,"") );
-        System.out.println("PREF_COMMENT_2 = " + preferences.getString(PREF_COMMENT_2,"") );
-        System.out.println("PREF_COMMENT_1 = " + preferences.getString(PREF_COMMENT_1,"") );
-        System.out.println("PREF_CURRENT = " + preferences.getString(PREF_CURRENT_COMMENT,"") );
-
-        System.out.println("PREF_MOOD_7 = " + preferences.getString(PREF_MOOD_DAY7,"") );
-        System.out.println("PREF_MOOD_6 = " + preferences.getString(PREF_MOOD_DAY6 ,"") );
-        System.out.println("PREF_MOOD_5 = " + preferences.getString(PREF_MOOD_DAY5,"") );
-        System.out.println("PREF_MOOD_4 = " + preferences.getString(PREF_MOOD_DAY4,"") );
-        System.out.println("PREF_MOOD_3 = " + preferences.getString(PREF_MOOD_DAY3,"") );
-        System.out.println("PREF_MOOD_2 = " + preferences.getString(PREF_MOOD_DAY2,"") );
-        System.out.println("PREF_MOOD_1 = " + preferences.getString(PREF_MOOD_DAY1,"") );
-        System.out.println("PREF_MOOD_CuRRENT = " + preferences.getString(PREF_POSITION_RECYCLERVIEW,"") );
-
 
     }
 }

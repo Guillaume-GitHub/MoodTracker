@@ -48,7 +48,6 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
         while (i < prefsArray.length) {
 
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) textViews[i].getLayoutParams();
-            System.out.println("image : " + i);
             String mPref = PreferenceController.getPrefs(prefsArray[i], this);
             displayIcon(textViews[i],i);
 
@@ -92,7 +91,6 @@ private String[] text = {"Il y a une semaine", "Il y a 6 jours", "Il y a 5 jours
                 default:
                     params.width = 0;
                     textViews[i].setLayoutParams(params);
-                    System.out.println("exit");
                     break;
             }
             i++;

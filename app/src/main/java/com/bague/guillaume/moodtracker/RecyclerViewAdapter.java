@@ -18,7 +18,6 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext;
-    private int mCurrentImage;
     private MediaController mMedia = new MediaController();
     private int[] mImages = {
             R.drawable.smiley_super_happy,
@@ -36,6 +35,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             R.color.faded_red,
     };
 
+    /**
+     * Constructor
+     * @param context context
+     */
     public RecyclerViewAdapter(Context context) {
         mContext = context;
     }
@@ -45,7 +48,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         private ImageView mImageView;
         private LinearLayout mLinearLayout;
-        public MyViewHolder(View itemView) {
+
+        private MyViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.activity_recyclerview_ImageView);
             mLinearLayout = itemView.findViewById(R.id.activity_recyclerview_LinearLayout);
