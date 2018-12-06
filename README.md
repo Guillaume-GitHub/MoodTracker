@@ -1,4 +1,4 @@
-# Projet N°1 - Mémorisez votre humeur du jour
+# Projet N°3 - Mémorisez votre humeur du jour
 
 # MoodTracker
 
